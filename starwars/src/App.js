@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Characters from "./components/characters"
+import Characters from "./components/characters";
 
 const App = () => {
   

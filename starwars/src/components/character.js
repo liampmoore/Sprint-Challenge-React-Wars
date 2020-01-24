@@ -37,7 +37,7 @@ export default function Character(props) {
                 console.log(error)
             })
         }
-    }, [homeworld, setHomeworld])
+    }, [homeworld, setHomeworld, character.homeworld])
 
   
 
