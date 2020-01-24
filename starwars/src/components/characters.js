@@ -4,9 +4,33 @@ import styled from "styled-components";
 import {TweenMax} from "greensock";
 import Character from "./character";
 
+
+const NextPage = styled.button`
+    background-color: #af6e4b;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 2rem;
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 2;
+`;
+const PreviousPage = styled.button`
+    background-color: #af6e4b;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 2rem;
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    z-index: 2;
+`;
+
 const Container = styled.div`
-    max-width: 1200px;
-    min-height: 1000px;
+    max-width: 900px;
+    min-height: 1350px;
     
     margin: 0 auto;
     margin-bottom: 80px;
@@ -20,7 +44,7 @@ const Container = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
 
-    @media (max-width: 1340px) {
+    @media (max-width: 1040px) {
         margin: 0 20px;
         margin-bottom: 80px;
       }
@@ -28,34 +52,54 @@ const Container = styled.div`
 `;
 
 export default function Characters() {
+
+    const [page, setPage] = useState('https://swapi.co/api/people/');
+    const [characters, setCharacters] = useState([]);
+    const [previous, setPrevious] = useState('');
+    const [next, setNext] = useState('');
+
+
     let charactersRef = useRef(null);
+    let nextRef = useRef(null);
     useEffect(() => {
             TweenMax.from(charactersRef, 1, {
             y: 1000
             }).play()
             
     },[])
-
-    const [characters, setCharacters] = useState([]);
+   
     useEffect(() => {
-        if (characters.length < 9) {
-            Axios.get(`https://swapi.co/api/people/${characters.length + 1}/`)
+            Axios.get(page)
                 .then((response) => {
-                    setCharacters([...characters, response.data])
-                    console.log(characters)
+                    setCharacters(response.data.results)
+                    setPrevious(response.data.previous)
+                    setNext(response.data.next)
                 })
                 .catch((error) => {
                     console.log(error)
                 });
-    }
+    }, [page]);
 
-  }, [characters, setCharacters]);
+    useEffect(() => {
+        console.log(previous)        
+    }, [previous])
+    useEffect(() => {
+        console.log(next)
+    }, [next])
+    useEffect(() => {
+        console.log(characters)
+    }, [characters])
 
+    
 
   return (
-      <Container ref={element => {
-        charactersRef = element;
-      }}>
+      <Container ref={element => {charactersRef = element;}}>
+        {previous ? <PreviousPage onClick={() => {
+            setPage(previous);
+        }}>Previous</PreviousPage>:<></>}
+        {next ? <NextPage onClick={() => {
+            setPage(next);
+        }} ref={nextRef}>Next</NextPage>:<></>}
           {characters.map((item, index) => {
               return <Character key={index} character={item}/>
           })}

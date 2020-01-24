@@ -30,7 +30,7 @@ export default function Character(props) {
         TweenMax.from(cardRef, 1, {
             y: 1000
             }).play()
-    }, [])
+    }, [props.character])
 
 
 
