@@ -16,6 +16,12 @@ const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    @media (max-width: 1400px) {
+        margin: 0 20px;
+        margin-bottom: 80px;
+      }
+
 `;
 
 export default function Characters() {
