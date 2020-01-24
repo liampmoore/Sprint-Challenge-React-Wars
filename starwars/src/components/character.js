@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
 import Axios from "axios";
+import {TweenMax} from "greensock";
 
 
 const Card = styled.div`
@@ -23,10 +24,19 @@ const Detail = styled.p`
 `;
 
 export default function Character(props) {
+    let cardRef = useRef(null);
+
+    useEffect( () => {
+        TweenMax.from(cardRef, 1, {
+            y: 1000
+            }).play()
+    }, [])
+
+
+
     const character = props.character;
     const [homeworld, setHomeworld] = useState('');
     
-
     useEffect(() => {
         if (homeworld === '') {
         Axios.get(character.homeworld)
@@ -42,7 +52,7 @@ export default function Character(props) {
   
 
     return (
-        <Card>
+        <Card ref={element => {cardRef = element;}}>
             <Name>{character.name}</Name>
             <Detail><strong>Height: </strong>{character.height}</Detail>
             <Detail><strong>Mass: </strong>{character.mass}</Detail>

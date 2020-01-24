@@ -28,26 +28,25 @@ const Container = styled.div`
 `;
 
 export default function Characters() {
-    let charactersRef = useRef();
-    const [characters, setCharacters] = useState([]);
-
-
+    let charactersRef = useRef(null);
     useEffect(() => {
             TweenMax.from(charactersRef, 1, {
             y: 1000
             }).play()
+            
     },[])
 
-  useEffect(() => {
-    if (characters.length < 9) {
-        Axios.get(`https://swapi.co/api/people/${characters.length + 1}/`)
-            .then((response) => {
-                setCharacters([...characters, response.data])
-                console.log(characters)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+    const [characters, setCharacters] = useState([]);
+    useEffect(() => {
+        if (characters.length < 9) {
+            Axios.get(`https://swapi.co/api/people/${characters.length + 1}/`)
+                .then((response) => {
+                    setCharacters([...characters, response.data])
+                    console.log(characters)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
     }
 
   }, [characters, setCharacters]);
