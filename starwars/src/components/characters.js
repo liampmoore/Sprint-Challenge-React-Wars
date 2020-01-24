@@ -5,6 +5,8 @@ import Character from "./character";
 
 const Container = styled.div`
     max-width: 1200px;
+    min-height: 1000px;
+    
     margin: 0 auto;
     margin-bottom: 80px;
     border: 1px solid black;

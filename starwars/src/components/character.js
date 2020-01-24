@@ -8,8 +8,8 @@ const Card = styled.div`
     border: 1px solid black;
     border-radius: 10px;
     margin: 25px 0;
-    min-height: 200px;
-    background-color: #443e3e41;
+    height: 200px;
+    background-color: #5b839ebb;
 `;
 
 const Name = styled.h3`
