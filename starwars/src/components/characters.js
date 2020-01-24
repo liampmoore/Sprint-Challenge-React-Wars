@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import Axios from "axios";
 import styled from "styled-components";
+import {TweenMax} from "greensock";
 import Character from "./character";
 
 const Container = styled.div`
@@ -27,8 +28,15 @@ const Container = styled.div`
 `;
 
 export default function Characters() {
+    let charactersRef = useRef();
+    const [characters, setCharacters] = useState([]);
 
-  const [characters, setCharacters] = useState([]);
+
+    useEffect(() => {
+            TweenMax.from(charactersRef, 1, {
+            y: 1000
+            }).play()
+    },[])
 
   useEffect(() => {
     if (characters.length < 9) {
@@ -46,7 +54,9 @@ export default function Characters() {
 
 
   return (
-      <Container>
+      <Container ref={element => {
+        charactersRef = element;
+      }}>
           {characters.map((item, index) => {
               return <Character key={index} character={item}/>
           })}
