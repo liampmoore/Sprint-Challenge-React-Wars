@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Axios from "axios";
 import './App.css';
 
 const App = () => {
@@ -9,6 +10,19 @@ const App = () => {
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
+
+  useEffect(() => {
+    if (characters.length < 9) {
+    Axios.get(`https://swapi.co/api/people/${characters.length + 1}/`)
+      .then((response) => {
+        setCharacters([...characters, response])
+        console.log(characters)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
+  }, [characters, setCharacters])
 
   return (
     <div className="App">
