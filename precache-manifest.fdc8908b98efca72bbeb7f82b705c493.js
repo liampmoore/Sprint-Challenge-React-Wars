@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c630d2c1c6c344bc50f081de300ef348",
+    "revision": "7f105775a3adef2a6b383b2d24a8f14a",
     "url": "/Sprint-Challenge-React-Wars/index.html"
   },
   {
-    "revision": "51ee9ad5832da4ed41f8",
+    "revision": "91fd45f49fe9f38729b3",
     "url": "/Sprint-Challenge-React-Wars/static/css/main.9fb20e6a.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Sprint-Challenge-React-Wars/static/js/2.4139510e.chunk.js"
   },
   {
-    "revision": "51ee9ad5832da4ed41f8",
-    "url": "/Sprint-Challenge-React-Wars/static/js/main.04acbf48.chunk.js"
+    "revision": "91fd45f49fe9f38729b3",
+    "url": "/Sprint-Challenge-React-Wars/static/js/main.923e476b.chunk.js"
   },
   {
     "revision": "782454cc9036469b90c9",
