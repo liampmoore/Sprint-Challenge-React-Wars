@@ -3,6 +3,7 @@ import Axios from "axios";
 import styled from "styled-components";
 import {TweenMax} from "greensock";
 import Character from "./character";
+import Loading from "./loadingsvg";
 
 
 const NextPage = styled.button`
@@ -94,6 +95,7 @@ export default function Characters() {
 
   return (
       <Container ref={element => {charactersRef = element;}}>
+        {characters.length === 0 ? <div><Loading size="64"/><p>Waiting for server...</p></div>:<></>}  
         {previous ? <PreviousPage onClick={() => {
             setPage(previous);
         }}>Previous</PreviousPage>:<></>}

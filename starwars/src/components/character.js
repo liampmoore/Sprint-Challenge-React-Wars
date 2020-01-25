@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Axios from "axios";
 import {TweenMax} from "greensock";
 
+import Loading from "./loadingsvg";
 
 const Card = styled.div`
     width: 300px;
@@ -57,7 +58,7 @@ export default function Character(props) {
             <Detail><strong>Height: </strong>{character.height}</Detail>
             <Detail><strong>Mass: </strong>{character.mass}</Detail>
             <Detail><strong>Birth year: </strong>{character.birth_year}</Detail>
-            {homeworld !== '' ? <Detail><strong>Homeworld: </strong>{homeworld}</Detail>:<></>}
+            {homeworld !== '' ? <Detail><strong>Homeworld: </strong>{homeworld}</Detail>:<Loading size="32"/>}
         </Card>
     )
 }
